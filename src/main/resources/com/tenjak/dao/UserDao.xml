@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tenjak.dao.UserDao">
+    <!-- 目的：为dao接口方法提供sql语句配置 -->
+
+   <!-- <select id="queryById"  resultType="java.lang.String">
+        &lt;!&ndash; 具体的sql &ndash;&gt;
+        SELECT
+        Name
+        FROM
+        city
+        WHERE
+        id = #{id}
+    </select>-->
+    <insert id="add" parameterType="User">
+        insert into t_user(username,password,realname) values (#{username},#{password},#{realname});
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.String">
+            delete from t_user where keyid = #{uid}
+    </delete>
+
+    <update id="update" parameterType="user">
+        update t_user set username=#{username},password=#{password},realname= #{realname} where id = #{id}
+    </update>
+
+    <select id="findOne" parameterType="java.lang.String" resultType="user">
+                SELECT  * FROM  t_user where keyid=#{uid};
+    </select>
+    <select id="findAll" resultType="user">
+        SELECT  * from t_user;
+    </select>
+
+</mapper>
